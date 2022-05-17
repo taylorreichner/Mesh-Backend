@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS events CASCADE;
+DROP TABLE IF EXISTS user_events CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE events (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -6,7 +8,28 @@ CREATE TABLE events (
     url TEXT,
     date TEXT,
     host text
-)
+);
+
+CREATE TABLE users (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE user_events (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT,
+    url TEXT,
+    date TEXT,
+    host text, 
+    note text,
+    CONSTRAINT fk_user
+        FOREIGN KEY(id)
+            REFERENCES users(id)
+
+);
+
+
 
 
 
