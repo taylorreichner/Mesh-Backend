@@ -17,16 +17,17 @@ CREATE TABLE users (
 );
 
 CREATE TABLE user_events (
-    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    event_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT,
     url TEXT,
     date TEXT,
     host text, 
     note text,
+    linked_user int,
     CONSTRAINT fk_user
-        FOREIGN KEY(id)
+        FOREIGN KEY(linked_user)
             REFERENCES users(id)
-
+            
 );
 
 
